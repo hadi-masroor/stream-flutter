@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class HomeProvider extends ChangeNotifier{
@@ -18,6 +20,17 @@ class HomeProvider extends ChangeNotifier{
 
     }
   }
-
+  
+}
+class StreamCounter{
+  StreamController<int> streamController = StreamController();
+  Stream<int> get stream=> streamController.stream;
+  
+  int value =0;
+StreamCounter(){
+    Timer.periodic(const Duration(seconds: 1), (timer) { 
+      streamController.add(value++);
+    });
+  }
 
 }
